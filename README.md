@@ -29,6 +29,8 @@
 ​
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
+ER図: https://drive.google.com/file/d/1mqZNkioTLcRvVirGqoNsYRfL9V5-nPIR/view?usp=sharing
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
