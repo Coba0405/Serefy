@@ -7,4 +7,7 @@ class Public::UsersController < ApplicationController
 
   def update
   end
+  
+  def mypage
+  end
 end
