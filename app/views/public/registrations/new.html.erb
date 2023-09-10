@@ -33,14 +33,14 @@
 
    <div class="field">
     <%= f.label :gender, "性別" %><br />
-    <%= f.text_field :gender %>
-    <%#= f.select :gender, User.genders.key.map { |k| [t("enum.user.gender.#{k}"), k] } %>
+    <%#= f.text_field :gender %>
+    <%= f.select :gender, User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] } %>
 
   </div>
    <div class="field">
     <%= f.label :age_groups, "年齢層" %><br />
-    <%= f.select :age_groups, User.age_groups.keys.map { |k| [t("enum.user.age_groups.#{k}"), k] } %>
-    <!--k] }の後ろに「, { include_blank: "指定なし" }」を入れるとプルダウンの一番上に"指定なし"が入る（今回は）-->
+    <%= f.select :age_groups, User.age_groups.keys.map { |k| [I18n.t("enums.user.age_groups.#{k}"), k] } %>
+    <!--k] }の後ろに「, { include_blank: "指定なし" }」を入れるとプルダウンの一番上に"指定なし"が入る（今回は実装しない）-->
   </div>
 
   <div class="field">

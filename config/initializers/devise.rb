@@ -48,6 +48,7 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   config.authentication_keys = [:account_name]
   # deviseで用意されているカラム以外をログインに使う場合、ここに記述することで反映させられる認証キー
+  # あくまでも片側でしか使用ができないため、User,Adminで使用する場合はどちらかをモデルに記述する必要がある
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the

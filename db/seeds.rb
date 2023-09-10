@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# ⇩モデル　     ⇩操作（createでデータの保存している）
+Admin.create!(
+  #Admin.find_or_create_by!
+  #     ↑findを入れないとまた作成をしようとしてエラーが発生してしまう。だがfindがdeviseに対応していない為deviseで用意しているpasswordに反映がされずターミナルでエラーが起きる
+  # ActiveRecord::StatementInvalid: SQLite3::SQLException: no such column: admins.password
+   email: 'test@test.com',
+   password: '123456',
+)

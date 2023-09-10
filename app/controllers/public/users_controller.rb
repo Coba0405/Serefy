@@ -9,5 +9,6 @@ class Public::UsersController < ApplicationController
   end
   
   def mypage
+    
   end
 end
