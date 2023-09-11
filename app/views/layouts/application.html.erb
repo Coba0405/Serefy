@@ -14,82 +14,126 @@
   <body class="d-flex flex-column vh-100">
     <header>
       
-      
+          <div style="background-color: #1c2434;">
+            <div class="logo">
+              <a class="d-flex" href="<%= root_path %>">
+                <img src="<%= asset_path("Serefy.Logo.png") %>;" alt="Logo" class="img-fluid">
+              </a>
+            </div>
+          </div>
+          
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <a class="navbar-brand" href="#">Hidden brand</a>
+        <!--<div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
+          <!--<a class="navbar-brand"><%#= link_to "Home", root_path %></a>-->
+          
+
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <% if user_signed_in? %>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= root_path %>">Top</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= homes_about_path %>">About</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= public_users_mypage_path %>">マイページ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="<%= public_posts_path %>">投稿一覧</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <!--<a class="nav-link disabled" href="<%#= destroy_user_session_path, method: :delete %>">ログアウト</a>-->
+              <!--hrefではmethod: :deleteは使えないのでlink_toで実行-->
             </li>
+            <% elsif admin_signed_in? %>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= root_path %>">Top</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link"　href="<%=　public_posts_path %>">投稿一覧</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= admin_users_path %>">会員一覧</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= admin_genres_path %>">ジャンル一覧</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              <!--<a class="nav-link" href="<%#= destroy_admin_session_path, method: :delete %>">ログアウト</a>-->
+            </li>
+            <% else %>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= root_path %>">Top</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= homes_about_path %>">About</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= new_user_registration_path %>">新規登録</a>
+            </li>
+            <li class="nav-item active text-black-50">
+              <a class="nav-link" href="<%= new_user_session_path %>">ログイン</a>
+            </li>
+            <% end %>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-        </div>
       </nav>
 
-      
-      <div class="container">
-        <div class="row">
-          <div class="col-2">
-            <div class="logo">
-              <a href="<%= root_path %>">
-                <img src="<%= asset_path("Serefy.Logo.png") %>;" alt="Logo">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-10" style="background-color: #D3D3D3;">
-            <ul class="navbar-nav">
-              <% if user_signed_in? %>
-                <li class="text-black-50">
-                  <%= link_to "マイページ", public_users_mypage_path %>
-                </li>
-                <li class="text-black-50">
-                  <%= link_to "投稿一覧", public_posts_path %>
-                </li>
-                <li class="text-black-50">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-                </li>
-              <% elsif admin_signed_in? %>
-                <li class="text-black-50">
-                  <%= link_to "投稿一覧", public_posts_path %>
-                </li>
-                <li class="text-black-50">
-                  <%= link_to "会員一覧", admin_users_path %>
-                </li>
-                <li class="text-black-50">
-                  <%= link_to "ジャンル一覧", admin_genres_path %>
-                </li>
-                <li class="text-black-50">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-                </li>
-              <% else %>
-                <li class="nav-item active">
-                  <%= link_to "About", homes_about_path %>
-                </li>
-                <li class="text-info">
-                  <%= link_to "新規登録", new_user_registration_path %>
-                </li>
-                <li class="text-info">
-                  <%= link_to "ログイン", new_user_session_path %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
+          <!--<div class="col-6" style="background-color: #D3D3D3;">-->
+          <!--  <ul class="navbar-nav">-->
+          <!--    <%# if user_signed_in? %>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "Home", root_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "マイページ", public_users_mypage_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "投稿一覧", public_posts_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
+          <!--      </li>-->
+          <!--    <%# elsif admin_signed_in? %>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "Home", root_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "投稿一覧", public_posts_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "会員一覧", admin_users_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "ジャンル一覧", admin_genres_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete %>-->
+          <!--      </li>-->
+          <!--    <%# else %>-->
+          <!--      <li class="text-black-50">-->
+          <!--        <%#= link_to "Home", root_path %>-->
+          <!--      </li>-->
+          <!--      <li class="nav-item active">-->
+          <!--        <%#= link_to "About", homes_about_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-info">-->
+          <!--        <%#= link_to "新規登録", new_user_registration_path %>-->
+          <!--      </li>-->
+          <!--      <li class="text-info">-->
+          <!--        <%#= link_to "ログイン", new_user_session_path %>-->
+          <!--      </li>-->
+          <!--    <%# end %>-->
+          <!--  </ul>-->
+          <!--</div>-->
     </header>
 
     <%= yield %>

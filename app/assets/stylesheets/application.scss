@@ -6,11 +6,19 @@
 }
 
 .logo {
-    img {
-      display: block;
+    a {
       width: 100px;
-      margin-right: 20px;
-  }
+      margin: auto;
+    }
+    //  display: block;
+    //  width: 100px;
+      // margin-right: 20px;
+      // maegin: auto;
+      // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  //}
 }
 
 
