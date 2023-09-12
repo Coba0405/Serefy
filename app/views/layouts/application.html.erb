@@ -87,53 +87,6 @@
           </form>
       </nav>
 
-          <!--<div class="col-6" style="background-color: #D3D3D3;">-->
-          <!--  <ul class="navbar-nav">-->
-          <!--    <%# if user_signed_in? %>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "Home", root_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "マイページ", public_users_mypage_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "投稿一覧", public_posts_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
-          <!--      </li>-->
-          <!--    <%# elsif admin_signed_in? %>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "Home", root_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "投稿一覧", public_posts_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "会員一覧", admin_users_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "ジャンル一覧", admin_genres_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete %>-->
-          <!--      </li>-->
-          <!--    <%# else %>-->
-          <!--      <li class="text-black-50">-->
-          <!--        <%#= link_to "Home", root_path %>-->
-          <!--      </li>-->
-          <!--      <li class="nav-item active">-->
-          <!--        <%#= link_to "About", homes_about_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-info">-->
-          <!--        <%#= link_to "新規登録", new_user_registration_path %>-->
-          <!--      </li>-->
-          <!--      <li class="text-info">-->
-          <!--        <%#= link_to "ログイン", new_user_session_path %>-->
-          <!--      </li>-->
-          <!--    <%# end %>-->
-          <!--  </ul>-->
-          <!--</div>-->
     </header>
 
     <%= yield %>

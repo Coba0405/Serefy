@@ -1,0 +1,6 @@
+<h6>（仮称）ジャンルバー</h6>
+
+    <h3>Genre</h3>
+    <% @genres.each do |genre| %>
+      <td><%= link_to genre.name %></td>
+    <% end %>
