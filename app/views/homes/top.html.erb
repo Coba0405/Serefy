@@ -3,7 +3,7 @@
     <div class="row">
        <div class="col-md-2">
       <!--ジャンルのサイドバーを入れる-->
-      <%= render "genres/genre", genres: @genres %>
+      <%= render "admin/genres/genre", genres: @genres %>
       <!--  <h4>text</h4>-->
         </div>
       <div class="col-md-10">
@@ -11,14 +11,15 @@
       </div>
       
       <div class="posts">
-        <%= @posts.each do |post| %>
+        <% @posts.each do |post| %>
           <td><%= image_tag users.get_profile_image(100,100)%></td>
           <td><%= post.user.name %></td>
           <td><%= post.title %></td>
           <td><%= post.image_id %></td>
           <td><%= post.body %></td>
-          <td><%= post.like,count %></td>
+          <td><%= post.like_count %></td>
           <td><%= link_to post.comment_count, post_comments_path(post) %></td>
+        <% end %>
       </div>
     </div>
     
