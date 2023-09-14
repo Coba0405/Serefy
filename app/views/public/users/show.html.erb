@@ -1,4 +1,61 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+     <h2>Detalied Infomaition</h2>
+    </div>
+  </div>
+  <div class="row">
+          <div class="col-md-4 mx-auto">
+            <tr>
+              <td><%= image_tag @user.get_profile_image(100,100) %></td>
+            </tr>
+          </div>
+
+        <table class="table table-hover table-inverse">
+          <tbody>
+
+          <div class="col-md-6 mx-auto">
+            <tr>
+              <%# binding.pry %>
+              <td>
+                <label>Name</label> 
+                <%= @user.account_name %>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <label>Introductiobn</label>
+                <%= @user.introduction %>
+                </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <label>Gender</label>
+                <%= @user.gender %>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                <label>Age Groups</label>
+                <%= @user.age_groups %>
+              </td>
+            </tr>
+          </div>
+                  <% if @user == current_user %>
+                    <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
+                    <!--<td><%#= link_to "Destroy", public_post_path(@post.id), method: :delete %></td>-->
+                  <% else %>
+                  <% end %>
+          </tbody>
+        </table>
+  </div>
+
+</div>
+
 <!--コメント機能18章を-->

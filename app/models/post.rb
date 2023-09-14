@@ -10,13 +10,12 @@ class Post < ApplicationRecord
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/Serefy.Logo.png')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      image.attach(io: File.open(file_path), filename: 'Serefy.Logo.png', content_type: 'image/png')
     end
     if image.attached?
-      image.variant(resize_to_limit: [width, height]).processed
-    else
+       image.variant(resize_to_limit: [width, height]).processed
     end
-    image
+    # image
   end
   
   # def get_profile_image(width, height)

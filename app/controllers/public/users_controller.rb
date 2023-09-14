@@ -1,5 +1,10 @@
 class Public::UsersController < ApplicationController
   
+  
+  def index
+    @users = User.all
+  end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -19,5 +24,6 @@ class Public::UsersController < ApplicationController
   
   def mypage
     @user = current_user
+    @posts = Post.all
   end
 end

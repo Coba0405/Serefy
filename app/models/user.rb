@@ -20,12 +20,13 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpeg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/no_image.png')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     if profile_image.attached?
-    # 画像サイズの変更を行う前に、画像が添付されていることを確認する。
-    profile_image.variant(resize_to_limit: [width, height]).processed
+      # 画像サイズの変更を行う前に、画像が添付されていることを確認する。
+       profile_image.variant(resize_to_limit: [width, height]).processed
+       #p profile_image.variant(resize_to_limit: [width, height]).processed
     
     # 画像サイズの変更を行う記述
     else
