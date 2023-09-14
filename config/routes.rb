@@ -16,18 +16,18 @@ Rails.application.routes.draw do
   # ユーザーサイド
   namespace :public do
     get "users/mypage" => "users#mypage"
-    resources :comments, only: [:create, :destroy, :edit, :update]
-    resources :posts, only: [:index, :update, :destroy, :show, :new, :create]
+    resources :posts, only: [:index, :update, :destroy, :show, :new, :create, :edit] do
+      resources :comments, only: [:create, :destroy, :edit, :update]
+    end
     resources :likes, only: [:create, :index, :destroy]
     resources :users, only: [:show, :edit, :update]
     resources :registrations, only: [:new, :create]
     resources :sessions, only: [:new, :create, :destroy]
-
   end
   
   # アドミンサイド
   namespace :admin do
-    resources :tags
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :update, :show]
     resources :genres, only: [:index, :create, :edit, :update]
   end

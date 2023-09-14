@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   
   has_one_attached :profile_image
+  # activestrageを使っているときの画像表示はこれがカラムの代わりに使用できる
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

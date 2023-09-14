@@ -6,9 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       
       t.text "title", null: false
       t.text "body", null: false
-      # t.string "tag"
-      # t.string "image"
-      # rails db:migrate:reset
+      t.string "tag"
       t.integer "user_id"
       t.integer "genre_id"
     end

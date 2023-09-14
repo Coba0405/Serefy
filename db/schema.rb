@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2023_09_13_080528) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment_content", null: false
+    t.integer "post_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -83,7 +84,7 @@ ActiveRecord::Schema.define(version: 2023_09_13_080528) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "title", null: false
     t.text "body", null: false
-    t.string "image"
+    t.string "tag"
     t.integer "user_id"
     t.integer "genre_id"
   end
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 2023_09_13_080528) do
     t.string "account_name", null: false
     t.integer "gender", null: false
     t.integer "age_groups", null: false
+    t.string "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

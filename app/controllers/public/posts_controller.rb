@@ -15,8 +15,13 @@ class Public::PostsController < ApplicationController
     redirect_to public_post_path(@post)
   end
   
+  def index
+    @posts = Post.all
+  end
+  
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
   
   # 投稿データのストロングパラメーター

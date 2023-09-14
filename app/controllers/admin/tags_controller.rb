@@ -1,11 +1,13 @@
 class Admin::TagsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @tag = Tag.new
     @tags = Tag.page(params[:page])
   end
 
   def create
-    @tag = Tag.new(patag_params)
+    @tag = Tag.new(tag_params)
     if @tag.save
       redirect_to admin_tags_path
     else
@@ -29,8 +31,8 @@ class Admin::TagsController < ApplicationController
   
   def destroy
     @tag = Tag.find(params[:id])
-    tag.destroy
-    redirect_tp admin_tags_path
+    @tag.destroy
+    redirect_to admin_tags_path
   end
   
   private

@@ -3,14 +3,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto">
-     <h2>This User's Detalied Infomaition</h2>
-        <table class="table table-hover table-inverse">
-          <tbody>
-            <%# @books.each do |book| %>
-            <!--book.userでその本を投稿したユーザー-->
+     <h2>Detalied Infomaition</h2>
+    </div>
+  </div>
+  <div class="row">
+          <div class="col-md-4 mx-auto">
             <tr>
               <td><%= image_tag @user.get_profile_image(100,100) %></td>
             </tr>
+          </div>
+
+        <table class="table table-hover table-inverse">
+          <tbody>
+
+          <div class="col-md-6 mx-auto">
             <tr>
               <%# binding.pry %>
               <td>
@@ -18,34 +24,35 @@
                 <%= @user.account_name %>
               </td>
             </tr>
+            
             <tr>
-              <!--カラムを追加する-->
-              <!--<td><%#= label :Introduction %></td>-->
-              <!--<td><%#= @user.introduction %></td>-->
+              <td>
+                <label>Introductiobn</label>
+                <%= @user.introduction %>
+                </td>
             </tr>
+            
             <tr>
-              <!--<td><%#= label :Gender %></td>-->
               <td>
                 <label>Gender</label>
                 <%= @user.gender %>
               </td>
             </tr>
+            
             <tr>
-              <!--<td><%#= label :Age_Groups %></td>-->
               <td>
                 <label>Age Groups</label>
                 <%= @user.age_groups %>
               </td>
             </tr>
-                  <%# if book.user == current_user %>
-                    <!--<td><%#= link_to "Edit", edit_public_user_path(user.id) %></td>-->
-                    <!--<td><%#= link_to "Destroy", book_path(book.id), method: :delete %></td>-->
-                  <%# else %>
-                  <%# end %>
-              
-              <%# end %>
+          </div>
+                  <% if @user == current_user %>
+                    <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
+                    <!--<td><%#= link_to "Destroy", public_post_path(@post.id), method: :delete %></td>-->
+                  <% else %>
+                  <% end %>
           </tbody>
         </table>
-    </div>
   </div>
+
 </div>

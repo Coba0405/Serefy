@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
+  has_many :post_and_tags, dependent: :destroy
+  has_many :tags, through: :post_and_tagsa
+  has_many :comment
   
   has_one_attached :image
   
