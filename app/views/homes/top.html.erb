@@ -1,25 +1,26 @@
 <div class="container">
   <div class="row"><h1>トップページ</h1></div>
     <div class="row">
-       <div class="col-md-2">
+      <div class="col-md-2 mx-auto">
       <!--ジャンルのサイドバーを入れる-->
       <%= render "admin/genres/genre", genres: @genres %>
       <!--  <h4>text</h4>-->
-        </div>
-      <div class="col-md-10">
-        <%= link_to "新規投稿", new_public_post_path %>
       </div>
+    
+      <div class="col-md-10 mx-auto">
+        <%= link_to "新規投稿", new_public_post_path %>
       
       <div class="posts">
         <% @posts.each do |post| %>
-          <td><%= image_tag users.get_profile_image(100,100)%></td>
-          <td><%= post.user.name %></td>
+          <td><%= image_tag post.user.get_profile_image(100, 100) %></td>
+          <td><%= post.user.account_name %></td>
           <td><%= post.title %></td>
-          <td><%= post.image_id %></td>
+          <td><%= image_tag post.get_image(300, 300) %></td>
           <td><%= post.body %></td>
-          <td><%= post.like_count %></td>
-          <td><%= link_to post.comment_count, post_comments_path(post) %></td>
+          <td><%#= post.like_count %></td>
+          <td><%#= link_to post.comment_count, post_comments_path(post) %></td>
         <% end %>
+      </div>
       </div>
     </div>
     

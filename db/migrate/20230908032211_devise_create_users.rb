@@ -42,8 +42,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string "last_name_kana", null: false
       t.string "first_name_kana", null: false
       t.string "account_name", null: false
-      t.string "gender", null: false
-      t.string "age_groups", null: false
+      t.integer "gender", null: false
+      t.integer "age_groups", null: false
     end
 
     add_index :users, :email,                unique: true

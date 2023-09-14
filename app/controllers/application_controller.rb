@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def configure_permitted_parameters
+    # binding.pry
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :account_name, :last_name, :first_name, :last_name_kana, :first_name_kana, :gender, :age_groups])
     #↑フォームで送るカラムの許可
   end

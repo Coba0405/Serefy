@@ -1,0 +1,13 @@
+public/post/show
+
+<div class="posts">
+  <% @posts.each do |post| %>
+    <td><%= image_tag post.user.get_profile_image(100, 100) %></td>
+    <td><%= post.user.account_name %></td>
+    <td><%= post.title %></td>
+    <td><%= image_tag post.get_image(300, 300) %></td>
+    <td><%= post.body %></td>
+    <td><%#= post.like_count %></td>
+    <td><%#= link_to post.comment_count, post_comments_path(post) %></td>
+  <% end %>
+</div>

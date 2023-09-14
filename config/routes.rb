@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   
   root to: "homes#top"
   get "homes/about" => "homes#about"
+  get "search" => "searches#search"
 
   # ユーザーサイド
   namespace :public do
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
   
   # アドミンサイド
   namespace :admin do
+    resources :tags
     resources :users, only: [:index, :edit, :update, :show]
     resources :genres, only: [:index, :create, :edit, :update]
   end
