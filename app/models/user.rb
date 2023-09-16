@@ -5,6 +5,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   
   has_one_attached :profile_image
+  # has_one_attached :profile_image do |attachable|
+    
+  # 　attachable.variant :thumb, resize_to_limit: [300, 300]
+  # end
+  # has_one_attached :profile_image
   # activestrageを使っているときの画像表示はこれがカラムの代わりに使用できる
   
   devise :database_authenticatable, :registerable,
@@ -21,12 +26,12 @@ class User < ApplicationRecord
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.png')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
+      profile_image.attach(io: File.open(file_path), filename: "default-image.png", content_type: 'image/png')
     end
     if profile_image.attached?
       # 画像サイズの変更を行う前に、画像が添付されていることを確認する。
-       profile_image.variant(resize_to_limit: [width, height]).processed
-       #p profile_image.variant(resize_to_limit: [width, height]).processed
+      # profile_image.variant(resize: "300").processed
+      profile_image.variant(resize_to_limit: [width, height]).processed
     
     # 画像サイズの変更を行う記述
     else

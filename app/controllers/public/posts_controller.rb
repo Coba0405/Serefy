@@ -37,8 +37,22 @@ end
     @comment = Comment.new
   end
   
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+    redirect_to public_posts_path, notice: "You have updated user successfully."
+    else
+    render "show", notice: "-----------"
+    end
+  end
+  
   # 投稿データのストロングパラメーター
   private
+  
+  def set_post
+    @post = Post.find(params[:id])
+  end
+  
   def post_params
     params.require(:post).permit(:image, :title, :body, :genre_id, tag_ids: [])
   end

@@ -38,8 +38,9 @@
 
   </div>
    <div class="field">
-    <%= f.label :age_groups, "年齢層" %><br />
+    <%= f.label :age_groups, "年齢層" %><br />    
     <%= f.select :age_groups, User.age_groups.keys.map { |k| [I18n.t("enums.user.age_groups.#{k}"), k] } %>
+
     <!--k] }の後ろに「, { include_blank: "指定なし" }」を入れるとプルダウンの一番上に"指定なし"が入る（今回は実装しない）-->
   </div>
 

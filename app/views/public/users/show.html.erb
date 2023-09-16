@@ -10,7 +10,7 @@
   <div class="row">
           <div class="col-md-4 mx-auto">
             <tr>
-              <td><%= image_tag @user.get_profile_image(100,100) %></td>
+              <td><%= image_tag @user.get_profile_image(300, 300) %></td>
             </tr>
           </div>
 
@@ -36,14 +36,14 @@
             <tr>
               <td>
                 <label>Gender</label>
-                <%= @user.gender %>
+                <%= @user.gender_i18n %>
               </td>
             </tr>
             
             <tr>
               <td>
                 <label>Age Groups</label>
-                <%= @user.age_groups %>
+                <%= @user.age_groups_i18n %>
               </td>
             </tr>
           </div>
@@ -54,6 +54,26 @@
                   <% end %>
           </tbody>
         </table>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto">
+          <div class="posts">
+            <% @posts.each do |post| %>
+              <!--<td><%#= image_tag post.user.get_profile_image(100, 100) %></td>-->
+              <!--<td><%#= post.user.account_name %></td>-->
+              <td>
+                <a href="<%= public_post_path(post.id) %>">
+                  <%= image_tag post.get_image(300, 300) %>
+                </a>
+              </td>
+              <!--<td><%#= image_tag post.get_image(300, 300) %></td>-->
+              <td><%= post.title %></td>
+              <td><%= post.body %></td>
+              <td><%#= post.like_count %></td>
+              <td><%= "コメント #{post.comment.count}" %></td>
+            <% end %>
+          </div>
+        </div>
   </div>
 
 </div>

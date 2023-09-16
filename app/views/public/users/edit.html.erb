@@ -1,2 +1,52 @@
 <h1>Public::Users#edit</h1>
 <p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+<%= form_with model: @user, url: public_user_path(current_user) do |f| %>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <%= image_tag @user.get_profile_image(200,200) %>
+    </div>
+    
+    <div class="col-md-6">
+      <table>
+        <tbody>
+      <tr>
+        <td>
+          <label for="inputName">Account Name</label>
+          <%= f.text_field :account_name, autofocus: true, id:"inputName", placeholder:"アカウント名" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="inputImage">Profile Image</label>
+          <%= f.file_field :profile_image, autofocus: true, id:"inputImage", placeholder:"プロフィール画像", accept: "image/*" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="inputIntroduction">Introduction</label>
+          <%= f.text_area :introduction, autofocus: true, id: "inputIntroduction", placeholder: "説明文", rows: 5, class: "your-class-name" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :gender, "性別" %>
+          <%= f.select :gender, User.genders.keys.map { |k| [I18n.t("enums.user.gender.#{k}"), k] } %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :age_groups, "年齢層" %>    
+          <%= f.select :age_groups, User.age_groups.keys.map { |k| [I18n.t("enums.user.age_groups.#{k}"), k] } %>
+        </td>
+      </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

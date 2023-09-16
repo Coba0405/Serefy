@@ -3,7 +3,7 @@ public/post/show
   <div class="posts">
     <div class="row">
       <td><%= image_tag @post.user.get_profile_image(100, 100) %></td>
-      <td><%= link_to @post.user.account_name,public_user_path %></td>
+      <td><%= link_to @post.user.account_name,public_user_path(@post.user.id) %></td>
       <td><%= @post.title %></td>
     </div>
     <div class="row">
@@ -31,18 +31,21 @@ public/post/show
         <% end %>
       </td>
       
-      <% @post.genres.each do |genre| %>
-      <th>(仮称）ジャンル</th>
+      <!--<%# @post.genres.each do |genre| %>-->
         <tr>
-          <td><%= genre.name %></td>
+          <th>(仮称）ジャンル</th>
+          <td><%= @post.genre.name %></td>
         </tr>
-      <% end %>
+      <% #end %>
       
+        <th>(仮称)関連付けられたタグ</th>
       <% @post.tags.each do |tag| %>
-      <th>(仮称)関連付けられたタグ</th>
         <tr>
           <td><%= tag.tag_type %></td>
         </tr>
       <% end %>
   </div>
+  <% if @post.user == current_user %>
+    <%= link_to "投稿を削除", public_post_path(@post), method: :delete %>
+  <% end %>
 </div>

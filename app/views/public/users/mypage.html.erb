@@ -34,21 +34,21 @@
           <tr>
             <td>
               <label>Gender</label>
-              <%= @user.gender %>
+              <%= @user.gender_i18n %>
             </td>
           </tr>
           
           <tr>
             <td>
               <label>Age Groups</label>
-              <%= @user.age_groups %>
+              <%= @user.age_groups_i18n %>
             </td>
           </tr>
-                <% if @user == current_user %>
+                <%# if @user == current_user %>
                   <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
                   <!--<td><%#= link_to "Destroy", public_post_path(@post.id), method: :delete %></td>-->
-                <% else %>
-                <% end %>
+                <%# else %>
+                <%# end %>
         </tbody>
       </table>
     </div>
