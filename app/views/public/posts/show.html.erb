@@ -1,34 +1,48 @@
 public/post/show
 <div class="container">
-<div class="posts">
-  <div class="row">
-    <td><%= image_tag @post.user.get_profile_image(100, 100) %></td>
-    <td><%= link_to @post.user.account_name,public_user_path %></td>
-    <td><%= @post.title %></td>
-  </div>
-  <div class="row">
-    <div class="col-5 mx-auto">
-      <%= image_tag @post.get_image(300, 300) %>
+  <div class="posts">
+    <div class="row">
+      <td><%= image_tag @post.user.get_profile_image(100, 100) %></td>
+      <td><%= link_to @post.user.account_name,public_user_path %></td>
+      <td><%= @post.title %></td>
     </div>
-    <div class="col-5 mx-auto">
-      <%= @post.body %>
+    <div class="row">
+      <div class="col-5 mx-auto">
+        <%= image_tag @post.get_image(300, 300) %>
+      </div>
+      <div class="col-5 mx-auto">
+        <%= @post.body %>
+      </div>
     </div>
+      <td><%#= post.like_count %></td>
+      <td>
+        <p>コメント数: <%= @post.comment.count %></p>
+        <% @post.comment.each do |comment| %>
+          <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+          <%= comment.user.name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+        <% end %>
+      </td>
+      <td>
+        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
+        <!--<%#= form_with model: [@post, @comment], namespace: :public do |f| %>-->
+          <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
+          <%= f.submit "投稿" %>
+        <% end %>
+      </td>
+      
+      <% @post.genres.each do |genre| %>
+      <th>(仮称）ジャンル</th>
+        <tr>
+          <td><%= genre.name %></td>
+        </tr>
+      <% end %>
+      
+      <% @post.tags.each do |tag| %>
+      <th>(仮称)関連付けられたタグ</th>
+        <tr>
+          <td><%= tag.tag_type %></td>
+        </tr>
+      <% end %>
   </div>
-    <td><%#= post.like_count %></td>
-    <td>
-      <p>コメント数: <%= @post.comment.count %></p>
-      <% @post.comment.each do |comment| %>
-        <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-        <%= comment.user.name %>
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% end %>
-    </td>
-    <td>
-      <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
-      <!--<%#= form_with model: [@post, @comment], namespace: :public do |f| %>-->
-        <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
-        <%= f.submit "投稿" %>
-      <% end %>
-    </td>
-</div>
 </div>

@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :post_and_tags, dependent: :destroy
-  has_many :tags, through: :post_and_tagsa
+  has_many :tags, through: :post_and_tags
   has_many :comment
   
   has_one_attached :image
@@ -18,6 +18,12 @@ class Post < ApplicationRecord
     # image
   end
   
+  def self.search(column_name, search_word)
+    where("#{column_name} LIKE ?", "%#{search_word}%")
+  end
+end
+
+  
   # def get_profile_image(width, height)
   #   unless profile_image.attached?
   #     file_path = Rails.root.join('app/assets/images/no_image.jpeg')
@@ -31,4 +37,3 @@ class Post < ApplicationRecord
   #   else
   #   end
   # end
-end

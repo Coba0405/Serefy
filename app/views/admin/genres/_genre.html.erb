@@ -1,8 +1,19 @@
-<h6>（仮称）ジャンルバー</h6>
+<h3>Genre検索</h3>
+<%= form_tag public_posts_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :genre_id,
+                     options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]),
+                     {
+                       prompt: 'ジャンルで絞り込み検索',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>
+    
+    <!--<h6>（仮称）ジャンルバー</h6>-->
 
-    <h3>Genre</h3>
-    <ul>
-      <% @genres.each do |genre| %>
-        <li><%= link_to genre.name %></li>
-      <% end %>
-    </ul>
+<!--    <h3>Genre</h3>-->
+<!--    <ul>-->
+<!--      <%# @genres.each do |genre| %>-->
+<!--        <li><%#= link_to genre.name %></li>-->
+<!--      <%# end %>-->
+<!--    </ul>-->

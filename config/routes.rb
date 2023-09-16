@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "homes/about" => "homes#about"
   get "search" => "searches#search"
-
+  get "result" => "searches#result"
   # ユーザーサイド
   namespace :public do
     get "users/mypage" => "users#mypage"

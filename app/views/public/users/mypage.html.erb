@@ -28,7 +28,7 @@
             <td>
               <label>Introductiobn</label>
               <%= @user.introduction %>
-              </td>
+            </td>
           </tr>
           
           <tr>
@@ -59,11 +59,16 @@
             <% @posts.each do |post| %>
               <!--<td><%#= image_tag post.user.get_profile_image(100, 100) %></td>-->
               <!--<td><%#= post.user.account_name %></td>-->
-              <td><%= image_tag post.get_image(300, 300) %></td>
+              <td>
+                <a href="<%= public_post_path(post.id) %>">
+                  <%= image_tag post.get_image(300, 300) %>
+                </a>
+              </td>
+              <!--<td><%#= image_tag post.get_image(300, 300) %></td>-->
               <td><%= post.title %></td>
               <td><%= post.body %></td>
               <td><%#= post.like_count %></td>
-              <td><%= link_to "#{post.comment.count} コメント", public_post_path(post.id) %></td>
+              <td><%= "コメント #{post.comment.count}" %></td>
             <% end %>
           </div>
         </div>

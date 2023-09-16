@@ -14,3 +14,12 @@ Admin.create!(
    email: 'test@test.com',
    password: '123456',
 )
+
+Tag.create([
+    { tag_type: 'ネイル' },
+    { tag_type: '春' },
+    { tag_type: '夏'},
+    { tag_type: '秋'},
+    { tag_type: '冬'},
+    { tag_type: 'デート'}
+    ])
