@@ -3,8 +3,11 @@ class Post < ApplicationRecord
   belongs_to :genre
   has_many :post_and_tags, dependent: :destroy
   has_many :tags, through: :post_and_tags, dependent: :destroy
-  has_many :comment, dependent: :destroy
-  
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :men_likes, -> { joins(:user).where(user: { gender: :Men }) }, class_name: "Like"
+  has_many :woman_likes, -> { joins(:user).where(user: { gender: :Woman }) }, class_name: "Like"
+
   has_one_attached :image
   
   def get_image(width, height)
@@ -20,6 +23,10 @@ class Post < ApplicationRecord
   
   def self.search(column_name, search_word)
     where("#{column_name} LIKE ?", "%#{search_word}%")
+  end
+  
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
   end
 end
 

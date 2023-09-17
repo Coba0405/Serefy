@@ -67,8 +67,24 @@
               <!--<td><%#= image_tag post.get_image(300, 300) %></td>-->
               <td><%= post.title %></td>
               <td><%= post.body %></td>
-              <td><%#= post.like_count %></td>
-              <td><%= "コメント #{post.comment.count}" %></td>
+              <td>
+                <% if post.liked_by?(current_user) %>
+                  <p>
+                    <%= link_to public_post_likes_path(post), method: :delete do %>
+                      ❤<%= post.men_likes.count %>男いいね
+                      ❤<%= post.woman_likes.count %>女いいね
+                    <% end %>
+                  </p>
+                <% else %>
+                  <p>
+                    <%= link_to public_post_likes_path(post), method: :post do %>
+                      ♡<%= post.men_likes.count %>男いいね
+                      ♡<%= post.woman_likes.count %>女いいね
+                    <% end %>
+                  </p>
+                <% end %>
+              </td>
+              <td><%= "コメント #{post.comments.count}" %></td>
             <% end %>
           </div>
         </div>

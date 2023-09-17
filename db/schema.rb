@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2023_09_13_080528) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment_content", null: false
     t.integer "post_id"
+    t.integer "user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -68,6 +69,9 @@ ActiveRecord::Schema.define(version: 2023_09_13_080528) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
   end
 
   create_table "post_and_tags", force: :cascade do |t|

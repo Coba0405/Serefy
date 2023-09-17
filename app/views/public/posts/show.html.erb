@@ -16,11 +16,11 @@ public/post/show
     </div>
       <td><%#= post.like_count %></td>
       <td>
-        <p>コメント数: <%= @post.comment.count %></p>
-        <% @post.comment.each do |comment| %>
+        <p>コメント数: <%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
           <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
           <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_content %>
         <% end %>
       </td>
       <td>

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :public do
     get "users/mypage" => "users#mypage"
     resources :posts, only: [:index, :update, :destroy, :show, :new, :create, :edit] do
+      resources :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy, :edit, :update]
+      delete "likes" => "likes#destroy"
     end
     resources :likes, only: [:create, :index, :destroy]
     resources :users, only: [:show, :edit, :update]

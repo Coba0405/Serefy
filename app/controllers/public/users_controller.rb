@@ -18,7 +18,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      @user.profile_image.attach(params[:profile_image])
+      # @user.profile_image.attach(params[:user][:profile_image])
       redirect_to public_user_path(@user.id), notice: "You have updated user successfully."
     else
       render :edit
