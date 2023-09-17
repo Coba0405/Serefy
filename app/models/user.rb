@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   
+  
   has_one_attached :profile_image
   # has_one_attached :profile_image do |attachable|
     
