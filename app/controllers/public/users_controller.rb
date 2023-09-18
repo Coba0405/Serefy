@@ -30,6 +30,10 @@ class Public::UsersController < ApplicationController
     @posts = current_user.posts
   end
   
+  def likes
+    @post = Post.find(params[:id])
+  end
+  
   private
   def user_params
     params.require(:user).permit(:account_name, :introduction, :gender, :age_groups, :profile_image)

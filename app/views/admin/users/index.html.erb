@@ -8,7 +8,7 @@
         <div class="col-md-8">
           <div class="col-md-4">
             <%= image_tag user.get_profile_image(100, 100) %>
-            <%= link_to user.account_name, public_user_path(user_id) %>
+            <%= link_to user.account_name, public_user_path(user.id) %>
             <%= user.gender_i18n %>
             <%= user.age_groups_i18n %>
           </div>

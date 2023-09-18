@@ -14,13 +14,13 @@ public/post/show
         <%= @post.body %>
       </div>
     </div>
-      <td><%#= post.like_count %></td>
+      <td><%= render "public/likes/like", post: @post %><%= link_to "いいねしたユーザー", likes_public_user_path %> </td>
       <td>
         <p>コメント数: <%= @post.comments.count %></p>
         <% @post.comments.each do |comment| %>
           <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
           <%= comment.user.name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_content %>
+          <%= comment.created_at.strftime('%m/%d') %><%= comment.comment_content %>
         <% end %>
       </td>
       <td>
@@ -46,6 +46,6 @@ public/post/show
       <% end %>
   </div>
   <% if @post.user == current_user %>
-    <%= link_to "投稿を削除", public_post_path(@post), method: :delete %>
+    <%= link_to "投稿を削除", public_post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   <% end %>
 </div>

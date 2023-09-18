@@ -68,7 +68,7 @@
               <!--<td><%#= image_tag post.get_image(300, 300) %></td>-->
               <td><%= post.title %></td>
               <td><%= post.body %></td>
-              <td><%#= post.like_count %></td>
+              <td><%= render "public/likes/like", post: post %></td>
               <td><%= "コメント #{post.comments.count}" %></td>
             <% end %>
           </div>

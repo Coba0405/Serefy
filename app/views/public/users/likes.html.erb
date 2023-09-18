@@ -1,0 +1,10 @@
+<% if @post.liked_users.present? %>
+  <h3>いいねしたユーザー</h3>
+  <% @post.liked_users.each do |user| %>
+    <%= image_tag user.get_profile_image(50, 50) %>
+
+    <%= link_to user.account_name, public_user_path(user.id) %>
+    <%= user.age_groups_i18n %>
+  <% end %>
+<% else %>
+<% end %>

@@ -22,7 +22,11 @@ Rails.application.routes.draw do
       delete "likes" => "likes#destroy"
     end
     resources :likes, only: [:create, :index, :destroy]
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get :likes
+      end
+    end
     resources :registrations, only: [:new, :create]
     resources :sessions, only: [:new, :create, :destroy]
   end

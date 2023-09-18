@@ -28,7 +28,7 @@
               <td><%= post.title %></td>
               <td><%= post.body %></td>
               <td><%#= post.like_count %></td>
-              <td><%= link_to "#{post.comment.count} コメント", public_post_path(post.id) %></td>
+              <td><%= link_to "#{post.comments.count} コメント", public_post_path(post.id) %></td>
             <% end %>
           </div>
         </div>

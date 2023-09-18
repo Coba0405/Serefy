@@ -44,11 +44,7 @@
               <%= @user.age_groups_i18n %>
             </td>
           </tr>
-                <%# if @user == current_user %>
-                  <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
-                  <!--<td><%#= link_to "Destroy", public_post_path(@post.id), method: :delete %></td>-->
-                <%# else %>
-                <%# end %>
+            <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
         </tbody>
       </table>
     </div>
@@ -64,26 +60,9 @@
                   <%= image_tag post.get_image(300, 300) %>
                 </a>
               </td>
-              <!--<td><%#= image_tag post.get_image(300, 300) %></td>-->
               <td><%= post.title %></td>
               <td><%= post.body %></td>
-              <td>
-                <% if post.liked_by?(current_user) %>
-                  <p>
-                    <%= link_to public_post_likes_path(post), method: :delete do %>
-                      ❤<%= post.men_likes.count %>男いいね
-                      ❤<%= post.woman_likes.count %>女いいね
-                    <% end %>
-                  </p>
-                <% else %>
-                  <p>
-                    <%= link_to public_post_likes_path(post), method: :post do %>
-                      ♡<%= post.men_likes.count %>男いいね
-                      ♡<%= post.woman_likes.count %>女いいね
-                    <% end %>
-                  </p>
-                <% end %>
-              </td>
+              <td><%= render "public/likes/like", post: post %></td>
               <td><%= "コメント #{post.comments.count}" %></td>
             <% end %>
           </div>

@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :men_likes, -> { joins(:user).where(user: { gender: :Men }) }, class_name: "Like"
   has_many :woman_likes, -> { joins(:user).where(user: { gender: :Woman }) }, class_name: "Like"
+  has_many :liked_users, through: :likes, source: :user
 
   has_one_attached :image
   

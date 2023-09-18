@@ -3,16 +3,14 @@
   <p>
     <%#= link_to public_post_likes_path(post), method: :delete, remote: true do %>
     <%= form_with model: @post, url: public_post_likes_path(post), method: :delete, local: false do |f| %>
-      <%= f.submit "♡#{post.men_likes.count}男いいね♡#{post.woman_likes.count}女いいね", class: "btn btn-link" %>
+      <%= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>
     <% end %>
   </p>
 <% else %>
   <p>
     <%#= link_to public_post_likes_path(post), method: :post, remoto: true do %>
     <%= form_with model: @post, url: public_post_likes_path(post), method: :post, local: false do |f| %>
-      <%= f.submit "♡#{post.men_likes.count}男いいね♡#{post.woman_likes.count}女いいね", class: "btn btn-link" %>
-      <!--♡<%#= post.men_likes.count %>男いいね-->
-      <!--♡<%#= post.woman_likes.count %>女いいね-->
+      <%= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>
     <% end %>
   </p>
 <% end %>
