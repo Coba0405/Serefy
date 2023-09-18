@@ -1,71 +1,9 @@
 <h1>Mypage</h1>
-
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-     <h2 class="text-center">Detalied Infomaition</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 mx-auto">
-      <tr>
-        <td><%= image_tag @user.get_profile_image(200,200) %></td>
-      </tr>
-    </div>
-
-    <div class="col-md-6 mx-auto">
-      <table class="table table-hover table-inverse">
-        <tbody>
-          <tr>
-            <%# binding.pry %>
-            <td>
-              <label>Name</label> 
-              <%= @user.account_name %>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>
-              <label>Introductiobn</label>
-              <%= @user.introduction %>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>
-              <label>Gender</label>
-              <%= @user.gender_i18n %>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>
-              <label>Age Groups</label>
-              <%= @user.age_groups_i18n %>
-            </td>
-          </tr>
-            <td><%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %></td>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 mx-auto">
-          <div class="posts">
-            <% @posts.each do |post| %>
-              <!--<td><%#= image_tag post.user.get_profile_image(100, 100) %></td>-->
-              <!--<td><%#= post.user.account_name %></td>-->
-              <td>
-                <a href="<%= public_post_path(post.id) %>">
-                  <%= image_tag post.get_image(300, 300) %>
-                </a>
-              </td>
-              <td><%= post.title %></td>
-              <td><%= post.body %></td>
-              <td><%= render "public/likes/like", post: post %></td>
-              <td><%= "コメント #{post.comments.count}" %></td>
-            <% end %>
-          </div>
-        </div>
-  </div>
+  <%= render "public/users/show" %>
+  <!--<div class="row">-->
+  <!--  <div class="col-md-10">-->
+  <%= render "public/posts/show" %>
+  <!--  </div>-->
+  <!--</div>-->
 </div>

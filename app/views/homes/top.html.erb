@@ -1,40 +1,31 @@
 <div class="container">
-  <div class="row"><h1>トップページ（最後に削除）</h1></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>トップページ（最後に削除）</h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-2 mx-auto">
-    <!--サイドバーを入れる-->
-    <%= render "admin/genres/genre", genres: @genres %>
-    <%= render "admin/tags/tag", tags: @tags %>
+      <!--サイドバーを入れる-->
+      <%= render "admin/genres/genre", genres: @genres %>
+      <%= render "admin/tags/tag", tags: @tags %>
     </div>
-    
     <div class="col-md-10 mx-auto">
-      <div class="col-md-5 mx-auto">
-        <% if user_signed_in? %>
-            <%= link_to "新規投稿", new_public_post_path, class: "btn btn-secondary btn-block" %>
-        <% else %>
-        <% end %>
-      </div>
       <div class="row">
-        <div class="col-4 mx-auto">
-          <div class="posts">
-            <% @posts.each do |post| %>
-              <td>
-                <a href="<%= public_post_path(post.id) %>">
-                  <%= image_tag post.get_image(250, 250) %>
-                </a>
-              </td>
-              <td><%= image_tag post.user.get_profile_image(70, 70) %></td>
-              <td><%= post.user.account_name %></td>
-              <td><%= post.title %></td>
-              <td><%= post.body %></td>
-                <td id="like_buttons_<%= post.id %>">
-                <%= render "public/likes/like", post: post %>
-              </td>
-              <td><%= link_to "#{post.comments.count} コメント", public_post_path(post.id) %></td>
-            <% end %>
-          </div>
+        <div class="col-md-5 mx-auto">
+          <% if user_signed_in? %>
+              <%= link_to "新規投稿", new_public_post_path, class: "btn btn-secondary btn-block" %>
+          <% else %>
+          <% end %>
         </div>
       </div>
+
+    <%= render "public/posts/show" %>
+
+    </div>
+  </div>
+
     </div>
   </div>
 </div>
+

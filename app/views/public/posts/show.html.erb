@@ -1,51 +1,72 @@
 public/post/show
 <div class="container">
-  <div class="posts">
+  <div class="card">
     <div class="row">
-      <td><%= image_tag @post.user.get_profile_image(100, 100) %></td>
-      <td><%= link_to @post.user.account_name,public_user_path(@post.user.id) %></td>
-      <td><%= @post.title %></td>
-    </div>
-    <div class="row">
-      <div class="col-5 mx-auto">
-        <%= image_tag @post.get_image(300, 300) %>
-      </div>
-      <div class="col-5 mx-auto">
-        <%= @post.body %>
-      </div>
-    </div>
-      <td><%= render "public/likes/like", post: @post %><%= link_to "いいねしたユーザー", likes_public_user_path %> </td>
-      <td>
-        <p>コメント数: <%= @post.comments.count %></p>
-        <% @post.comments.each do |comment| %>
-          <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-          <%= comment.user.name %>
-          <%= comment.created_at.strftime('%m/%d') %><%= comment.comment_content %>
-        <% end %>
-      </td>
-      <td>
-        <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
-        <!--<%#= form_with model: [@post, @comment], namespace: :public do |f| %>-->
-          <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
-          <%= f.submit "投稿" %>
-        <% end %>
-      </td>
-      
-      <!--<%# @post.genres.each do |genre| %>-->
+      <div class="col-4 mx-auto">
         <tr>
-          <th>(仮称）ジャンル</th>
-          <td><%= @post.genre.name %></td>
+          <td><%= image_tag @post.user.get_profile_image(70, 70) %></td>
         </tr>
-      <% #end %>
-      
-        <th>(仮称)関連付けられたタグ</th>
-      <% @post.tags.each do |tag| %>
         <tr>
-          <td><%= tag.tag_type %></td>
+          <td><%= link_to @post.user.account_name,public_user_path(@post.user.id) %></td>
         </tr>
+        <tr>
+          <td><%= image_tag @post.get_image(300, 300), class: "card-img-top", style: "object-fit: cover" %></td>
+        </tr>
+        <tr>
+          <td><%= render "public/likes/like", post: @post %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "いいねしたユーザー", likes_public_user_path, class: "btn btn-outline-info"  %></td>
+        </tr>
+      </div>
+      
+    <div class="col-4 mx-auto">
+      <table> 
+        <tbody>
+          <tr>
+            <td><%= @post.title %></td>
+          </tr>
+          <tr>
+            <td><%= @post.body %></td>
+          </tr>
+          <tr>
+            <th>(仮称）ジャンル</th>
+          </tr>
+          <tr>
+            <td><%= @post.genre.name %></td>
+          </tr>
+          <tr>
+            <th>(仮称)関連付けられたタグ</th>
+          </tr>
+          <% @post.tags.each do |tag| %>
+          <tr>
+            <td><%= tag.tag_type %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-4 mx-auto">
+      <% if @post.user == current_user %>
+        <%= link_to "投稿を削除", public_post_path(@post), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
       <% end %>
+      <p>コメント数: <%= @post.comments.count %></p>
+      <% @post.comments.each do |comment| %>
+        <p><%= image_tag comment.user.get_profile_image(40, 40) %></p>
+        <%= link_to comment.user.account_name, public_user_path(@post.user.id) %>
+        <%#= comment.created_at.strftime('%m/%d') %>
+        <%= comment.comment_content %>
+      <% end %>
+          <tr>
+            <td>
+            <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
+              <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
+              <%= f.submit "投稿" %>
+            <% end %>
+          </td>
+        </tr>
+    </div>
+    </div>
   </div>
-  <% if @post.user == current_user %>
-    <%= link_to "投稿を削除", public_post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-  <% end %>
 </div>

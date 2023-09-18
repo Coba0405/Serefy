@@ -1,21 +1,29 @@
 <div class="container">
     <div class="row mt-5 mb-5">
+    <div class="col-md-2 mx-auto">
+      <!--サイドバーを入れる-->
+      <%= render "admin/genres/genre", genres: @genres %>
+      <%= render "admin/tags/tag", tags: @tags %>
+    </div>
       <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
         <h3 class="text-center"><strong class="border-bottom border-dark">投稿一覧</strong></h3>
       
-<% @posts.each do |post| %>
-  <td>
-    <a href="<%= public_post_path(post.id) %>">
-      <%= image_tag post.get_image(300, 300) %>
-    </a>
-  </td>
-  <td><%= image_tag post.user.get_profile_image(100, 100) %></td>
-  <td><%= link_to post.user.account_name, public_user_path(post.user_id) %></td>
-  <td><%= post.title %></td>
-  <td><%= post.body %></td>
-  <td><%= render "public/likes/like", post: post %></td>
-  <td><%= link_to "コメント数 #{post.comments.count}" %></td>
-<% end %>
+        <%= render "public/posts/show" %>
+
+      
+<!--<%# @posts.each do |post| %>-->
+<!--  <td>-->
+<!--    <a href="<%#= public_post_path(post.id) %>">-->
+<!--      <%#= image_tag post.get_image(300, 300) %>-->
+<!--    </a>-->
+<!--  </td>-->
+<!--  <td><%#= image_tag post.user.get_profile_image(100, 100) %></td>-->
+<!--  <td><%#= link_to post.user.account_name, public_user_path(post.user_id) %></td>-->
+<!--  <td><%#= post.title %></td>-->
+<!--  <td><#= post.body %></td>-->
+<!--  <td><%#= render "public/likes/like", post: post %></td>-->
+<!--  <td><%#= link_to "コメント数 #{post.comments.count}" %></td>-->
+<!--<%# end %>-->
     </div>
   </div>
 </div>
