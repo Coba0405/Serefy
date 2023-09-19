@@ -3,6 +3,8 @@ public/post/show
   <div class="card">
     <div class="row">
       <div class="col-4 mx-auto">
+        <table>
+        <tbody>
         <tr>
           <td><%= image_tag @post.user.get_profile_image(70, 70) %></td>
         </tr>
@@ -13,11 +15,15 @@ public/post/show
           <td><%= image_tag @post.get_image(300, 300), class: "card-img-top", style: "object-fit: cover" %></td>
         </tr>
         <tr>
-          <td><%= render "public/likes/like", post: @post %></td>
+          <td id="like_buttons_<%= @post.id %>">
+            <%= render "public/likes/like", post: @post %>
+          </td>
         </tr>
         <tr>
           <td><%= link_to "いいねしたユーザー", likes_public_user_path, class: "btn btn-outline-info"  %></td>
         </tr>
+        </tbody>
+        </table>
       </div>
       
     <div class="col-4 mx-auto">

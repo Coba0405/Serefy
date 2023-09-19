@@ -16,10 +16,29 @@ Admin.create!(
 )
 
 Tag.create([
-    { tag_type: 'ネイル' },
     { tag_type: '春' },
     { tag_type: '夏'},
     { tag_type: '秋'},
     { tag_type: '冬'},
-    { tag_type: 'デート'}
+    { tag_type: 'デート'},
+    { tag_type: 'アウトドア'},
+    { tag_type: 'ネイル' },
+    { tag_type: 'ロングヘアー'},
+    { tag_type: 'ミディアムヘアー'},
+    { tag_type: 'ショートヘアー'},
+    { tag_type: 'サロン'},
+    { tag_type: 'フェス'},
+    { tag_type: 'フォーマル'},
+    { tag_type: 'カジュアル'},
+    { tag_type: 'ビジネス'}
     ])
+    
+Genre.create([
+    { name: '〇〇を始めたい！'},
+    { name: 'ファッション'},
+    { name: 'ヘアスタイル'},
+    { name: 'ネイル'},
+    { name: 'アートメイク'},
+    { name: 'メイク'},
+    { name: 'ボティメイク'}
+  ])

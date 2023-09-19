@@ -45,7 +45,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer "gender", null: false
       t.integer "age_groups", null: false
       t.string "introduction"
-    end
+      t.string "freeze"
+      end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true

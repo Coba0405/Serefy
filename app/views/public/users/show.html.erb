@@ -4,6 +4,28 @@
 <div class="container">
   <!--Detalied Infomaition部分-->
   <%= render "public/users/show" %>
+  
+  <% if admin_signed_in? %>
+  <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
+  <div class="row">
+    <div class="card col-md-12" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">アカウント利用可否</h5>
+        <p class="card-text">
+          <%= f.radio_button :is_deleted, false, checked: @user.is_deleted == false %>
+          <%= f.label :is_deleted, "利用中" %>
+          <%= f.radio_button :is_deleted, true ,checked: @user.is_deleted == true %>
+          <%= f.label :is_deleted, "停止中" %>
+        </p>
+          <label>停止理由</label>
+          <%= f.text_area :freeze, autofocus: true, placeholder: "具体的な理由を記述", rows: 2 %>
+          <%= f.submit "保存" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%# else %>
+  <% end %>
   <!--そのユーザーの投稿一覧-->
   <%= render "public/posts/show" %>
 </div>

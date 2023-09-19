@@ -1,20 +1,42 @@
 <div class="container">
   <div class="row mt-5 mb-5">
-    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
-      <h3 class="text-center"><strong class="border-bottom border-dark">投稿一覧</strong></h3>
-      
-      <% @users.each do |user| %>
+    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 mx-auto">
+      <h3 class="text-center"><strong class="border-bottom border-dark">会員一覧</strong></h3>
+
       <div class="row">
-        <div class="col-md-8">
-          <div class="col-md-4">
-            <%= image_tag user.get_profile_image(100, 100) %>
-            <%= link_to user.account_name, public_user_path(user.id) %>
-            <%= user.gender_i18n %>
-            <%= user.age_groups_i18n %>
+        <% @users.each do |user| %>
+          <div class="card col-md-6">
+            <div class="card-body">
+              <table class="row">
+                <thead class="col-md-4">
+                  <td>
+                    <%= image_tag user.get_profile_image(100, 100), class: "card-img-top" %>
+                  </td>
+                </thead>
+                <tbody class="col-md-5">
+                  <tr>  
+                    <td><%= user.account_name %></td>
+                  </tr>
+                  <tr>
+                    <td><%= user.gender_i18n %></td>
+                  </tr>
+                  <tr>
+                    <td><%= user.age_groups_i18n %></td>
+                  </tr>
+                </tbody>
+                <tfooter class="col-md-3">
+                  <tr>
+                    <td><%= link_to "会員詳細", public_user_path(user.id), class: "btn btn-success mb-2" %></td>
+                  </tr>
+                  <tr>
+                    <td><%= link_to "会員削除", public_user_path(user.id), class: "btn btn-danger mb-2" %></td>
+                  </tr>
+                </tfooter>
+              </table>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
   </div>
 </div>

@@ -2,16 +2,25 @@
   <% if post.liked_by?(current_user) %>
     <%#= link_to public_post_likes_path(post), method: :delete, remote: true do %>
     <%= form_with model: @post, url: public_post_likes_path(post), method: :delete, local: false do |f| %>
-      <%= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>
+      <!--<%#= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>-->
+      <%= f.button type:"submit", class: "btn btn-outline-success" do %>
+        (仮称)<i class="fa-solid fa-heart"></i>いいね男<%= post.men_likes.count %>女<%= post.woman_likes.count %>
+      <% end %>
     <% end %>
   <% else %>
     <%#= link_to public_post_likes_path(post), method: :post, remoto: true do %>
     <%= form_with model: @post, url: public_post_likes_path(post), method: :post, local: false do |f| %>
-      <%= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>
+      <!--<%#= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-success" %>-->
+      <%= f.button type:"submit", class: "btn btn-outline-success" do %>
+      (仮称)<i class="fa-regular fa-heart"></i>いいね男<%= post.men_likes.count %>女<%= post.woman_likes.count %>
+      <% end %>
     <% end %>
   <% end %>
 <% elsif admin_signed_in? %>
   <%= form_with model: @post, url: public_post_likes_path(post), method: :delete, local: false do |f| %>
-    <%= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-link" %>
+    <!--<%#= f.submit "(仮称)男いいね♡#{post.men_likes.count} 女いいね♡#{post.woman_likes.count}", class: "btn btn-outline-link" %>-->
+    <%= f.button type:"submit", class: "btn btn-outline-success" do %>
+      (仮称)いいね<i class="fa-regular fa-heart"></i>男<%= post.men_likes.count %><i class="fa-regular fa-heart"></i>女<%= post.woman_likes.count %>
+    <% end %>
   <% end %>
 <% end %>

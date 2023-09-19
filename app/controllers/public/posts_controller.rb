@@ -13,7 +13,6 @@ class Public::PostsController < ApplicationController
     # ↑この投稿の「user_id」として「current_user.id」の値を代入する
     # binding.pry
     @post.save
-    
     redirect_to public_post_path(@post)
   end
 
