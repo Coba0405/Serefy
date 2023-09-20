@@ -5,11 +5,13 @@
   <!--Detalied Infomaition部分-->
   <%= render "public/users/show" %>
   
+  
+  
   <% if admin_signed_in? %>
   <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
   <div class="row">
-    <div class="card col-md-12" style="width: 18rem;">
-      <div class="card-body">
+    <div class="card col-md-6 mx-auto" style="width: 18rem;">
+      <div class="card-body mb-3">
         <h5 class="card-title">アカウント利用可否</h5>
         <p class="card-text">
           <%= f.radio_button :is_deleted, false, checked: @user.is_deleted == false %>

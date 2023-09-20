@@ -1,4 +1,4 @@
-<!--投稿一覧-->
+<!--投稿一覧とマイページで実装-->
   <div class="row">
     <% @posts.each do |post| %>
       <div class="card col-sm-6">
@@ -8,10 +8,10 @@
           <!--hightを記述するとtimeerrorが発生するためコメントアウトする-->
         </a>
         <div class="card-body">
-          <p><%= image_tag post.user.get_profile_image(70, 70) %></p>
-          <p><%= post.user.account_name %></p>
+          <!--<p><%#= image_tag post.user.get_profile_image(70, 70) %></p>-->
+          <!--<p><%#= post.user.account_name %></p>-->
           <h5 class="card-title"><strong><%= post.title %></strong></h5>
-          <p class="card-text"><%= post.body %></p>
+          <!--<p class="card-text"><%#= post.body %></p>-->
           <div id="like_buttons_<%= post.id %>">
             <%= render "public/likes/like", post: post %>
           </div>

@@ -8,7 +8,23 @@ class Public::CommentsController < ApplicationController
     redirect_to public_post_path(post)
   end
 
-  def dsetroy
+  def destroy
+    @comment = Comment.find(params[:id])
+    if admin_signed_in?
+      @comment.destroy
+    else
+      if @comment.user_id == current_user.id
+        @comment.destroy
+      end
+    end
+    # @comment = Comment.find(params[:id])
+    # @user = current_user
+    # if @user.update(comment_content)
+    #   redirect_to public_post_show(@post.id)
+    # else
+    #   render :show
+    # end
+    redirect_back(fallback_location: root_path)
   end
 
   def edit

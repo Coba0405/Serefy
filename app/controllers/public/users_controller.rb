@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   # before_action :get_profile_image, only: [:show]
+  before_action :set_user, only: [:likes]
   
   def index
     @users = User.all
@@ -29,13 +30,19 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @posts = current_user.posts
+    # @post = Post.find(params[:id])
   end
   
   def likes
     @post = Post.find(params[:id])
     likes = Like.where(user_id: @user.id).pluck(:post_id)
     @like_posts = Post.find(likes)
-    @post = Post.find(params[:id])
+  end
+  
+  def likes_post
+    @user = User.find(params[:id])
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
   end
   
   private
@@ -49,5 +56,9 @@ class Public::UsersController < ApplicationController
       file_path = Rails.root.join('app/assets/images/no_image.png')
       @user.profile_image.attach(io: File.open(file_path), content_type: 'image/png')
     end    
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 end

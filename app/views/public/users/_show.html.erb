@@ -47,8 +47,10 @@
               <% if @user == current_user %>
                 <%= link_to "Edit", edit_public_user_path(@user.id), class: "btn btn-success" %>
               <% end %>
+              <%= link_to "いいねした投稿", likes_post_public_user_path(@user), class: "btn btn-success" %>
             </td>
         </tbody>
       </table>
     </div>
   </div>
+  

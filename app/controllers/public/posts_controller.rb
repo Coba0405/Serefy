@@ -34,15 +34,28 @@ end
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @comments = Comment.find_by(params[:id])
   end
   
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-    redirect_to public_posts_path, notice: "You have updated user successfully."
+      redirect_to public_posts_path, notice: "You have updated user successfully."
     else
-    render "show", notice: "-----------"
+      render "show", notice: "-----------"
     end
+    
+    # @comment = Comment.find_by(params[:id])
+    # if comment.user_id == current_user.id
+    #   @comment.destroy
+    # end
+
+  end
+    
+  def liked_posts
+    @post = Post.find(params[:id])
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
   end
   
   # 投稿データのストロングパラメーター

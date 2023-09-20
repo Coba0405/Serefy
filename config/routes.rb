@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update] do
       member do
         get :likes
+        get :likes_post
       end
     end
     resources :registrations, only: [:new, :create]
