@@ -9,7 +9,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # @user = current_user
-    @posts = @user.posts
+    page = params[:page] || 1
+    @posts = @user.posts.page(page)
   end
 
   def edit

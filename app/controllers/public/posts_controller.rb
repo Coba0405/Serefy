@@ -22,7 +22,7 @@ def index
   elsif params[:genre_id].present?
     @posts = Genre.find(params[:genre_id]).posts
   else
-    @posts = Post.all
+    @posts = Post.page(params[:page])
   end
 end
 
