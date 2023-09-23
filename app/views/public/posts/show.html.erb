@@ -21,7 +21,7 @@ public/post/show
             </tr>
             <% if user_signed_in? || admin_signed_in? %>
             <tr>
-              <td><%= link_to "いいねしたユーザー", likes_public_user_path(@post.user.id), class: "btn btn-outline-info" %></td>
+              <td><%= link_to "いいねしたユーザー", likes_public_user_path, class: "btn btn-outline-info" %></td>
             </tr>
             <% end %>
           </tbody>
