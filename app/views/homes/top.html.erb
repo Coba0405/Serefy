@@ -1,24 +1,40 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 mx-auto">
-      <!--サイドバーを入れる-->
-      <%= render "admin/genres/genre", genres: @genres %>
-      <%= render "admin/tags/tag", tags: @tags %>
-    </div>
-    <div class="col-md-10 mx-auto">
-      <div class="row">
-        <div class="col-md-5 mx-auto">
-          <% if user_signed_in? %>
-              <%= link_to "新規投稿", new_public_post_path, class: "btn btn-success btn-block" %>
-          <% else %>
-          <% end %>
-        </div>
-      </div>
-
-    <%= render "public/posts/show", posts: @posts %>
-
+    <div class="col-md-10 mx-auto text-center">
+      <h3>見た目を変えれば意識が変わる</br>意識が変われば人生が変わる</br></h3>
+      <!--<h4>『身嗜み』を整え、輝いた自分になるために</h4>-->
+      <h5>
+        他人から与えられる影響は少なくありません。</br>
+        このサイトは他者からの印象を具現化し、</br>
+        
+        より良くするためにはどうすればいいかを</br>表面化して
+        努力・挑戦することが</br>必要
+      </h5>
+      <%= link_to "Enter", public_posts_path, class: "btn btn-dark" %>
     </div>
   </div>
 </div>
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-2 mx-auto mt-4">-->
+      <!--サイドバーを入れる-->
+<!--      <%#= render "admin/genres/genre", genres: @genres %>-->
+<!--      <%#= render "admin/tags/tag", tags: @tags %>-->
+<!--    </div>-->
+<!--    <div class="col-md-10 mx-auto">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-5 mx-auto mt-4 mb-4">-->
+<!--          <%# if user_signed_in? %>-->
+<!--              <%#= link_to "新規投稿", new_public_post_path, class: "btn btn-success btn-block" %>-->
+<!--          <%# else %>-->
+<!--          <%# end %>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    <%#= render "public/posts/show", posts: @posts %>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 

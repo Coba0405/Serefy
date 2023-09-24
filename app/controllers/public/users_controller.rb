@@ -14,8 +14,12 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
-    # @user = User.find(params[:id])
+    # @user = current_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to post_path
+    end
+    @user = User.find(params[:id])
   end
 
   def update
@@ -30,7 +34,7 @@ class Public::UsersController < ApplicationController
   
   def mypage
     @user = current_user
-    @posts = current_user.posts
+    @posts = current_user.posts.page(params[:page])
     # @post = Post.find(params[:id])
   end
   

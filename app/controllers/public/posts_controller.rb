@@ -18,11 +18,11 @@ class Public::PostsController < ApplicationController
 
 def index
   if params[:tag_id].present?
-    @posts = Tag.find(params[:tag_id]).posts
+    @posts = Tag.find(params[:tag_id]).posts.order(created_at: :desc).page(params[:page])
   elsif params[:genre_id].present?
-    @posts = Genre.find(params[:genre_id]).posts
+    @posts = Genre.find(params[:genre_id]).posts.order(created_at: :desc).page(params[:page])
   else
-    @posts = Post.page(params[:page])
+    @posts = Post.order(created_at: :desc).page(params[:page])
   end
 end
 

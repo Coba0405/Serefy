@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, if: :use_auth?
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def after_sign_in_path_for(resource)
@@ -18,5 +19,18 @@ class ApplicationController < ActionController::Base
     # binding.pry
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :account_name, :last_name, :first_name, :last_name_kana, :first_name_kana, :gender, :age_groups])
     #↑フォームで送るカラムの許可
+  end
+  
+  private
+
+  def use_auth?
+    # byebug
+    if controller_name == 'homes' && (action_name == 'top' || action_name == 'about')
+      false
+    elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
+      false
+    else
+      true
+    end
   end
 end
