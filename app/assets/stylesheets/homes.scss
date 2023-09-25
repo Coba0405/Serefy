@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .background._top {
-  background-image: image-url('top_backimage.jpg');
+  background-image: image-url('backimage.png');
     /* 画像を常に天地左右の中央に配置 */
   background-position: center bottom;
   /* 画像をタイル状に繰り返し表示しない */
@@ -13,4 +13,6 @@
   background-size: cover;
   /* 背景画像が読み込まれる前に表示される背景のカラー */
   background-color: #464646;
+  
+  // margin-top: 15px;
 }

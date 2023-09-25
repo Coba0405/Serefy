@@ -22,7 +22,6 @@
             </div>
           </div>
    
-    
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,9 +35,9 @@
             <li class="nav-item active text-black-50">
               <a class="nav-link" href="<%= root_path %>">Top</a>
             </li>
-            <li class="nav-item active text-black-50">
-              <a class="nav-link" href="<%= homes_about_path %>">About</a>
-            </li>
+            <!--<li class="nav-item active text-black-50">-->
+            <!--  <a class="nav-link" href="<%#= homes_about_path %>">About</a>-->
+            <!--</li>-->
             <li class="nav-item active text-black-50">
               <a class="nav-link" href="<%= public_users_mypage_path %>">マイページ</a>
             </li>
@@ -74,9 +73,9 @@
             <li class="nav-item active text-black-50">
               <a class="nav-link" href="<%= root_path %>">Top</a>
             </li>
-            <li class="nav-item active text-black-50">
-              <a class="nav-link" href="<%= homes_about_path %>">About</a>
-            </li>
+            <!--<li class="nav-item active text-black-50">-->
+            <!--  <a class="nav-link" href="<%#= homes_about_path %>">About</a>-->
+            <!--</li>-->
             <li class="nav-item active text-black-50">
               <a class="nav-link" href="<%= new_user_registration_path %>">新規登録</a>
             </li>
@@ -99,6 +98,14 @@
     <div class="background <%= @top %>" >
       <%= yield %>
     </div>
+    
+  <footer　class="footer-container">
+    <div style="background-color: #1c2434;" class="pt-2 pb-2">
+      <div class="container text-center">
+        <div style="color: white;">&copy; <%= Time.now.year %> Serefy. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
   </body>
 </div>
 </html>
