@@ -61,7 +61,7 @@
         <p>コメント数: <%= @post.comments.count %></p>
         <% @post.comments.each do |comment| %>
           <p><%= image_tag comment.user.get_profile_image(40, 40) %></p>
-          <%= link_to comment.user.account_name, public_user_path(@post.user.id) %>
+          <%= link_to comment.user.account_name, public_user_path(comment.user.id) %>
           <%#= comment.created_at.strftime('%m/%d') %>
           <%= comment.comment_content %>
             <% if admin_signed_in? || (comment.user == current_user) %>
