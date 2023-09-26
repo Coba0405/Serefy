@@ -3,7 +3,7 @@ class Admin::TagsController < ApplicationController
   
   def index
     @tag = Tag.new
-    @tags = Tag.page(params[:page])
+    @tags = Tag.page(params[:page]).per(5)
   end
 
   def create

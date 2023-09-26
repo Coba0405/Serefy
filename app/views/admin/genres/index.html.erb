@@ -1,12 +1,12 @@
 <!--newとindexを兼ねているページ-->
-<div class="container">
+<div class="container border border-white contents-area bg-white">
   <!--new部分-->
   
   <div class="row mt-5 mb-5">
     <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
       <h3 class="text-center"><strong class="border-bottom border-dark">ジャンル一覧・追加/削除</strong></h3>
       
-      <%= form_with model: @genre,url: admin_genres_path, method: :post do |f| %>
+      <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
         <table class="table table-border contents-area mt-5">
           <tbody>
             <tr>
@@ -35,6 +35,7 @@
               </tr>
             <% end %>
           </tbody>
+        </table>
     </div>
   </div>
 </div>
