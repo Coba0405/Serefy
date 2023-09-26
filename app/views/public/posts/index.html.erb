@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row mt-5 mb-5">
+  <div class="row mt-5 mb-5">
     <div class="col-md-2 mx-auto mt-4">
       <!--サイドバーを入れる-->
       <%= render "admin/genres/genre", genres: @genres %>
       <%= render "admin/tags/tag", tags: @tags %>
     </div>
-      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
+      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto pb-5">
         <div class="col-md-5 mx-auto mt-4 mb-4">
           <% if user_signed_in? %>
               <%= link_to "新規投稿", new_public_post_path, class: "btn btn-success btn-block" %>

@@ -25,6 +25,7 @@
 
       <%= link_to "Enter", public_posts_path, class: "btn btn-dark" %>
     </div>
+    <%= render "public/posts/show", posts: @posts %>
   </div>
 </div>
 <!--<div class="container">-->
@@ -44,7 +45,6 @@
 <!--        </div>-->
 <!--      </div>-->
 
-<!--    <%#= render "public/posts/show", posts: @posts %>-->
 
 <!--    </div>-->
 <!--  </div>-->

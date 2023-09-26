@@ -25,12 +25,15 @@ class ApplicationController < ActionController::Base
 
   def use_auth?
     # byebug
-    if controller_name == 'homes' && (action_name == 'top' || action_name == 'about')
-      false
-    elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
-      false
-    else
-      true
+    if !admin_signed_in?
+      # 否定演算子でアドミンがサインインしている時falseが返される
+      if controller_name == 'homes' && (action_name == 'top' || action_name == 'about')
+        false
+      elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
+        false
+      else
+        true
+      end
     end
   end
 end
