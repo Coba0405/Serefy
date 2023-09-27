@@ -38,3 +38,14 @@
 // .footer-container {
 //   height: 300%;
 // }
+.check_box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.check_box > div {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+    padding: 5px; /* 必要に応じて調整してください */
+    height: auto !important; /* divの高さを元の状態に戻します */
+}

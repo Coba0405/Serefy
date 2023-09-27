@@ -1,13 +1,13 @@
 <h3>Tag検索</h3>
 <%= form_tag public_posts_path, method: :get, class: 'boards__searchForm' do %>
-      <%= select_tag :tag_id,
-                     options_from_collection_for_select(Tag.all, :id, :tag_type, params[:tag_id]),
-                     {
-                       prompt: 'タグを選択',
-                       onchange: 'submit(this.form);'
-                     }
-      %>
-    <% end %>
+  <%= select_tag :tag_id,
+    options_from_collection_for_select(Tag.all, :id, :tag_type, params[:tag_id]),
+    {
+     prompt: 'タグを選択',
+     onchange: 'submit(this.form);'
+    }
+  %>
+  <% end %>
     
     <!--<ul>-->
     <!--  <%#@tags.each do |tag| %>-->

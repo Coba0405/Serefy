@@ -26,7 +26,7 @@
           </thead>
               <% @tags.each do |tag| %>
                 <tr>
-                  <td class="align-middle"><%= tag.tag_type %></td>
+                  <td class="align-middle"><%= tag.tag_type%></td>
                   <td colspan="3"></td>
                   <td>
                     <%= link_to "タグを変更する", edit_admin_tag_path(tag.id), class: "btn btn-success" %>
