@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_18_021420) do
+ActiveRecord::Schema.define(version: 2023_09_30_093743) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +66,22 @@ ActiveRecord::Schema.define(version: 2023_09_18_021420) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "group_users", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
+    t.string "group_name", null: false
+    t.string "introduction"
+    t.string "owner_id", null: false
+  end
+
   create_table "liked_users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -99,6 +115,22 @@ ActiveRecord::Schema.define(version: 2023_09_18_021420) do
     t.integer "user_id"
     t.integer "genre_id"
     t.string "image"
+  end
+
+  create_table "pubic_group_users", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "group_id"
+  end
+
+  create_table "pubic_groups", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
+    t.string "group_name", null: false
+    t.string "introduction"
+    t.string "owner_id", null: false
   end
 
   create_table "tags", force: :cascade do |t|

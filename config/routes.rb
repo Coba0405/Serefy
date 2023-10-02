@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         get :likes_post
       end
     end
+    resources :groups do
+      resources :group_users, only: [:create, :destroy]
+    end
     resources :registrations, only: [:new, :create]
     resources :sessions, only: [:new, :create, :destroy]
   end

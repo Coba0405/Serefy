@@ -31,6 +31,8 @@ class ApplicationController < ActionController::Base
         false
       elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
         false
+      elsif controller_name == 'groups' && (action_name == 'index' || action_name == 'show')
+        false
       else
         true
       end
