@@ -20,10 +20,12 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.genre_id = params[:group][:genre_id]
+    # フォームから送信された genre_idを設定
     @group.users << current_user
     # <<によって左側の要素に右側の要素を追加するために使用
       if @group.save
-        redirect_to groups_path
+        redirect_to public_group_path(@group)
       else
         render 'new'
       end
