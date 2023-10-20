@@ -10,39 +10,53 @@ class Public::GroupsController < ApplicationController
   
   def index
     @groups = Group.all
-    # @group = Group.find(params[:id])
+    @user = User.find(current_user.id)
+    @group_joining = GroupUser.where(user_id: current_user.id)
+    @group_none = "参加中のグループはありません"
   end
   
   def show
     @group = Group.find(params[:id])
+    # @user = User.find(params[:id])
   end
   
   def create
     @group = Group.new(group_params)
-    @group.owner_id = current_user.id
     @group.genre_id = params[:group][:genre_id]
     # フォームから送信された genre_idを設定
     @group.users << current_user
     # <<によって左側の要素に右側の要素を追加するために使用
-      if @group.save
-        redirect_to public_group_path(@group)
-      else
-        render 'new'
-      end
+    # if @group.save
+    #   redirect_to public_group_path(@group)
+    # else
+    #   render 'new'
+    # end
+    @group.owner_id = current_user.id
+    if @group.save
+      redirect_to public_groups_path, method: :post
+    else
+      render "new"
+    end
+    
   end
   
   def update
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to public_group_path(@group.id)
     else
       render 'edit'
     end
   end
   
+  def edit
+    @group = Group.find(params[:id])
+    
+  end
+  
   def destroy
     @group = group.find(params[:id])
     @group.destroy
-    redirect_to groups_path
+    redirect_to public_groups_path
   end
   
   private
@@ -51,10 +65,10 @@ class Public::GroupsController < ApplicationController
     params.require(:group).permit(:group_name, :introduction, :image)
   end
   
-  def ensure_corrent_user
+  def ensure_correct_user
     @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
+    unless @group.is_owned_by?(current_user)
+      redirect_to public_groups_path
     end
   end
 end

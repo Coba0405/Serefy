@@ -28,9 +28,6 @@ Rails.application.routes.draw do
         get :likes_post
       end
     end
-    resources :chat do
-      resources :chat_users, only: [:index, :show, :create, :destroy]
-    end
     resources :groups do
       resources :group_users, only: [:create, :destroy]
     end

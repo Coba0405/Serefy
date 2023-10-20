@@ -9,7 +9,10 @@
     </div>
     <div class="row">
       <div class="col">
-        
+        <% if @group.is_owned_by?(current_user) %>
+          <%= link_to "Edit", edit_public_group_path(@group) %>
+        <% else %>
+        <% end %>
       </div>
     </div>
   </div>
