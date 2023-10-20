@@ -16,11 +16,11 @@
     <% if @group_joining == [] %>
       <%= @group_none %>
     <% else %>
-      <!--<%# @group_joining.each do |group_user| %>-->
-      <!--  <div>-->
-      <!--    <%#= link_to "#{group_user.group.group_name}", public_group_path(group_user.group.id), class: "btn btn-info" %>-->
-      <!--  </div>-->
-      <%# end %>
+      <% @group_joining.each do |group_user| %>
+        <div>
+          <%= link_to "#{group_user.group.group_name}", public_group_path(group_user.group.id), class: "btn btn-info flex-block" %>
+        </div>
+      <% end %>
     <% end %>
     <!--参加中のグループを表示する記述がなぜか全て出てしまう-->
     
@@ -37,13 +37,13 @@
                 <div class="card-body">
                   <h5><%= link_to "#{group.group_name}",public_group_path(group.id) %></h5>
                   <div>参加人数：<%= "#{group.users.count}" %></div>
-                  <div><%= "#{group.introduction}" %></div>
+                  <!--<div><%#= "#{group.introduction}" %></div>-->
                   <div>ジャンル：<%= group.genre.name %></div>
                 </div>
               </div>
               <div class="col-md-3 text-center d-flex justify-content-around pt-5 pb-5">
                 <!--<div class="card-body">-->
-                <div><%= link_to "参加", public_group_path(group.id), class: "btn btn-success" %></div>
+                <div><%= link_to "参加", public_group_join_path(group.id), class: "btn btn-success" %></div>
                 <div><%= link_to "詳細", public_group_path(group.id), class: "btn btn-info" %></div>
                 <!--</div>-->
               </div>

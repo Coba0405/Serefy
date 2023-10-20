@@ -20,6 +20,12 @@ class Public::GroupsController < ApplicationController
     # @user = User.find(params[:id])
   end
   
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    redirect_to public_group_path(@group)
+  end
+  
   def create
     @group = Group.new(group_params)
     @group.genre_id = params[:group][:genre_id]
@@ -54,9 +60,14 @@ class Public::GroupsController < ApplicationController
   end
   
   def destroy
-    @group = group.find(params[:id])
-    @group.destroy
-    redirect_to public_groups_path
+    @group = Group.find(params[:id])
+    if @group.is_owned_by?(current_user)
+      @group.destroy
+      redirect_to public_groups_path
+    else
+        @group.users.delete(current_user)
+        redirect_to public_groups_path
+    end
   end
   
   private

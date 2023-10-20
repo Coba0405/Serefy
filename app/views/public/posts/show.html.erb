@@ -62,7 +62,7 @@
         <% @post.comments.each do |comment| %>
           <p><%= image_tag comment.user.get_profile_image(40, 40) %></p>
           <%= link_to comment.user.account_name, public_user_path(comment.user.id) %>
-          <%#= comment.created_at.strftime('%m/%d') %>
+          <%#= comment.created_at.strftime('%m/%d') %>,
           <%= comment.comment_content %>
             <% if admin_signed_in? || (comment.user == current_user) %>
               <%= link_to "削除", public_post_comment_path(post_id: @comments.post.id, id: @comments.id), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" }%>
