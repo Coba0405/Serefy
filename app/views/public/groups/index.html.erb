@@ -7,6 +7,7 @@
       <div class="col-md-5 mx-auto text-center mt-4 mb-4">
         <% if user_signed_in? %>
           <%= link_to "トークルームを作成する", new_public_group_path, class: "mt-3 btn btn-success" %>
+          <%#= link_to "参加中のトークルームを表示する", public_group_join_path(@groups) %>
         <% else %>
         <% end %>
       </div>
@@ -18,12 +19,11 @@
     <% else %>
       <% @group_joining.each do |group_user| %>
         <div>
-          <%= link_to "#{group_user.group.group_name}", public_group_path(group_user.group.id), class: "btn btn-info flex-block" %>
+          <%= link_to "#{group_user.group.group_name}", public_group_path(group_user.group.id), class: "btn btn-info flex-display" %>
         </div>
       <% end %>
     <% end %>
-    <!--参加中のグループを表示する記述がなぜか全て出てしまう-->
-    
+
     
       <div class="col-md-12 mt-4 mb-4">
         <% @groups.each do |group| %>
@@ -35,17 +35,27 @@
               <!--</div>-->
               <div class="col-md-9">
                 <div class="card-body">
-                  <h5><%= link_to "#{group.group_name}",public_group_path(group.id) %></h5>
-                  <div>参加人数：<%= "#{group.users.count}" %></div>
-                  <!--<div><%#= "#{group.introduction}" %></div>-->
-                  <div>ジャンル：<%= group.genre.name %></div>
+                  <h4><%= link_to "#{group.group_name}",public_group_path(group.id) %></h4>
+                  <table>
+                    <tboby>
+                      <tr>
+                        <td><div><%= group.owner.account_name %></div></td>
+                        <td><div>参加人数：<%= "#{group.users.count}" %></div></td>
+                      </tr>
+                      <tr>
+                      <!--<div><%#= "#{group.introduction}" %></div>-->
+                        <td><div>ジャンル：<%= group.genre.name %></div></td>
+                      </tr>
+                    </tboby>
+                  </table>
                 </div>
               </div>
               <div class="col-md-3 text-center d-flex justify-content-around pt-5 pb-5">
-                <!--<div class="card-body">-->
+              <% if user_signed_in? && group.owner_id != current_user.id %>
+              <%# byebug %>
                 <div><%= link_to "参加", public_group_join_path(group.id), class: "btn btn-success" %></div>
+              <% end %>  
                 <div><%= link_to "詳細", public_group_path(group.id), class: "btn btn-info" %></div>
-                <!--</div>-->
               </div>
             </div>
           </div>

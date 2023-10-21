@@ -68,14 +68,16 @@
               <%= link_to "削除", public_post_comment_path(post_id: @comments.post.id, id: @comments.id), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" }%>
             <% end %>
           <% end %>
+          <% if user_signed_in? %>
             <tr>
               <td>
-              <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
-                <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
-                <%= f.submit "投稿" %>
-              <% end %>
-            </td>
-          </tr>
+                <%= form_with model: [@post, @comment], url: public_post_comments_path(@post.id) do |f| %>
+                  <%= f.text_area :comment_content, rows: "5", placeholder: "コメントする" %>
+                  <%= f.submit "投稿" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
       </div>
     </div>
   </div>

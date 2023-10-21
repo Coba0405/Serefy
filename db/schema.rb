@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_13_142611) do
+ActiveRecord::Schema.define(version: 2023_09_30_093743) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,24 +52,6 @@ ActiveRecord::Schema.define(version: 2023_10_13_142611) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "chat_users", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.integer "chat_id", null: false
-    t.integer "genre_id", null: false
-  end
-
-  create_table "chats", force: :cascade do |t|
-    t.integer "title", null: false
-    t.integer "genre_id", null: false
-    t.integer "user_id", null: false
-    t.integer "partner_id", null: false
-    t.string "sentence", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -87,8 +69,8 @@ ActiveRecord::Schema.define(version: 2023_10_13_142611) do
   create_table "group_users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.integer "group_id"
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -97,7 +79,7 @@ ActiveRecord::Schema.define(version: 2023_10_13_142611) do
     t.integer "genre_id", null: false
     t.string "group_name", null: false
     t.string "introduction"
-    t.string "owner_id", null: false
+    t.integer "owner_id", null: false
   end
 
   create_table "liked_users", force: :cascade do |t|
@@ -140,15 +122,6 @@ ActiveRecord::Schema.define(version: 2023_10_13_142611) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "group_id"
-  end
-
-  create_table "pubic_groups", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "genre_id", null: false
-    t.string "group_name", null: false
-    t.string "introduction"
-    t.string "owner_id", null: false
   end
 
   create_table "tags", force: :cascade do |t|

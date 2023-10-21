@@ -1,5 +1,5 @@
 class Public::GroupsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # アクション実行前にユーザーの認証を確認し、ログインしていない場合ユーザーを認証するように要求する
   before_action :ensure_correct_user, only: [:edit, :update]
   # editとuppdateの時のみ:ensure_correct_userメソッドを呼び出すように指示
@@ -10,9 +10,14 @@ class Public::GroupsController < ApplicationController
   
   def index
     @groups = Group.all
-    @user = User.find(current_user.id)
-    @group_joining = GroupUser.where(user_id: current_user.id)
-    @group_none = "参加中のグループはありません"
+    @group_none = "参加中のルームはありません"
+    if user_signed_in?
+      # @user = User.find(current_user.id)
+      @group_joining = GroupUser.where(user_id: current_user.id)
+    else
+      # @user = nil
+      @group_joining = []
+    end
   end
   
   def show
@@ -22,8 +27,16 @@ class Public::GroupsController < ApplicationController
   
   def join
     @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to public_group_path(@group)
+    # @group.users << current_user
+    # 上と下は同じ
+    # GroupUser.new(group: @group, user: current_user).save!
+    
+    @group_user = GroupUser.new(group: @group, user: current_user)
+    if @group_user.save
+      redirect_to public_group_path(@group)
+    else
+      redirect_to public_group_path(@group), alert: "アカウントが重複しています。"
+    end
   end
   
   def create

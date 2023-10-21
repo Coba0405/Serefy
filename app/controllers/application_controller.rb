@@ -29,9 +29,13 @@ class ApplicationController < ActionController::Base
       # 否定演算子でアドミンがサインインしている時falseが返される
       if controller_name == 'homes' && (action_name == 'top' || action_name == 'about')
         false
-      elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
-        false
       elsif controller_name == 'groups' && (action_name == 'index' || action_name == 'show')
+        false
+      elsif controller_name == 'posts' && (action_name == 'index' || action_name == 'show')
+        false
+      elsif controller_name == 'users' && (action_name == 'show' || action_name == 'likes_post')
+        false
+      elsif controller_name == 'sessions' && (action_name == 'create' || action_name == 'new')
         false
       else
         true
