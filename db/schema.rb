@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 2023_09_30_093743) do
     t.string "group_name", null: false
     t.string "introduction"
     t.integer "owner_id", null: false
+    t.text "message"
+    t.string "image"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "liked_users", force: :cascade do |t|
@@ -117,13 +121,6 @@ ActiveRecord::Schema.define(version: 2023_09_30_093743) do
     t.string "image"
   end
 
-  create_table "pubic_group_users", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.integer "group_id"
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "tag_type", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -155,6 +152,7 @@ ActiveRecord::Schema.define(version: 2023_09_30_093743) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "groups", "users"
   add_foreign_key "post_and_tags", "posts"
   add_foreign_key "post_and_tags", "tags"
 end
