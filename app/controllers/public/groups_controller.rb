@@ -51,7 +51,7 @@ class Public::GroupsController < ApplicationController
     #   render 'new'
     # end
     @group.owner_id = current_user.id
-    if @group.save
+    if @group.save!
       redirect_to public_groups_path, method: :post
     else
       render "new"
@@ -86,7 +86,7 @@ class Public::GroupsController < ApplicationController
   private
   
   def group_params
-    params.require(:group).permit(:group_name, :introduction, :image)
+    params.require(:group).permit(:group_name, :introduction, :image, :genre_id)
   end
   
   def ensure_correct_user

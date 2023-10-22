@@ -1,0 +1,12 @@
+<h3 class="text-center"><strong class="border-bottom border-dark">参加中のトークルーム</strong></h3>
+    
+    
+    <% if @group_joining == [] %>
+      <%= @group_none %>
+    <% else %>
+      <% @group_joining.each do |group_user| %>
+        <div>
+          <%= link_to "#{group_user.group.group_name}", public_group_path(group_user.group.id), class: "btn btn-info flex-block" %>
+        </div>
+      <% end %>
+    <% end %>

@@ -1,0 +1,23 @@
+<!--投稿一覧とマイページで実装-->
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="card col-sm-6">
+        <a href= "<%= public_post_path(post.id) %>">
+          <%= image_tag post.get_image(400, 250), class: "card-img-top", style: "object-fit: cover" %>
+          <!--<#= image_tag post.get_image(400, 250), class: "card-img-top", height: "400", style: "object-fit: cover" %>-->
+          <!--hightを記述するとtimeerrorが発生するためコメントアウトする-->
+        </a>
+        <div class="card-body">
+          <!--<p><%#= image_tag post.user.get_profile_image(70, 70) %></p>-->
+          <!--<p><%#= post.user.account_name %></p>-->
+          <h5 class="card-title"><strong><%= post.title %></strong></h5>
+          <!--<p class="card-text"><%#= post.body %></p>-->
+          <div id="like_buttons_<%= post.id %>">
+            <%= render "public/likes/like", post: post %>
+          </div>
+          <p><%= link_to "#{post.comments.count} コメント", public_post_path(post.id) %></p>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate posts %>
+  </div>

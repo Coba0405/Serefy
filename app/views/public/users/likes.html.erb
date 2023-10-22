@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row mt-5 mb-5">
+    <% if @post.present? %>
+    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 mx-auto">
+      <h3 class="text-center"><strong class="border-bottom border-dark">いいねしたユーザー</strong></h3>
+
+      <div class="row">
+        <% @post.liked_users.each do |user| %>
+          <div class="card col-md-6">
+            <div class="card-body">
+              <table class="row">
+                <thead class="col-md-4">
+                  <td>
+                    <%= image_tag user.get_profile_image(70, 70), class: "card-img-top" %>
+                  </td>
+                </thead>
+                <tbody class="col-md-5">
+                  <tr>  
+                    <td><%= link_to user.account_name, public_user_path(user.id) %></td>
+                  </tr>
+                  <tr>
+                    <td><%= user.gender_i18n %></td>
+                  </tr>
+                  <tr>
+                    <td><%= user.age_groups_i18n %></td>
+                  </tr>
+                </tbody>
+                <tfooter class="col-md-3">
+                  <tr>
+                    <td><%= link_to "会員詳細", public_user_path(user.id), class: "btn btn-success mb-2" %></td>
+                  </tr>
+                </tfooter>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
