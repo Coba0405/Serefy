@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
     resources :groups do
       resources :group_users, only: [:create, :destroy]
-      resources :group_messages, only: [:index, :create, :destroy]
+      resources :group_messages, only: [:show, :create, :destroy]
       get "join" => "groups#join"
     end
     resources :registrations, only: [:new, :create]

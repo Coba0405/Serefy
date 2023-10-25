@@ -22,7 +22,8 @@ class Public::GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
-    # @user = User.find(params[:id])
+    @group_message = GroupMessage.new()
+    @group_messages = GroupMessage.all
   end
   
   def join

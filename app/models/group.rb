@@ -6,7 +6,8 @@ class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
   has_many :users, through: :group_users, source: :user
   # source:オプションを使用して関連するUserレコードがどのテーブルから取得さるかを指定
-
+  has_many :group_masseges, dependent: :destroy
+  
   validates :group_name, presence: true
   # presenceで:name属性がからでないことを確認する
   validates :introduction, presence: true
