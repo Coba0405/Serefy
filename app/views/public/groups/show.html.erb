@@ -25,11 +25,11 @@
       <div class="col">
         <% if user_signed_in? %>
           <% if @group.is_owned_by?(current_user) %>
-            <%= link_to "Edit", edit_public_group_path(@group) %>
-            <%= link_to "Delete", public_group_path(@group), method: :delete, data: { confirm: "グループを削除しますか？"} %>
+            <%= link_to "Edit", edit_public_group_path(@group), class: "btn btn-success" %>
+            <%= link_to "Delete", public_group_path(@group), method: :delete, data: { confirm: "グループを削除しますか？"}, class: "btn btn-danger" %>
           <% else %>
             <% if @group.users.include?(current_user) %>
-              <%= link_to "脱退する", public_group_path(@group), method: :delete, data: { confirm: "グループを脱退しますか？"} %>
+              <%= link_to "脱退する", public_group_path(@group), method: :delete, data: { confirm: "グループを脱退しますか？"}, class: "btn btn-danger"%>
             <% end %>
           <% end %>
         <% end %>
@@ -42,11 +42,13 @@
         <%= form_with url: public_group_group_messages_path(@group.id), model: @group_message do |f| %>
           <%= f.text_field :message %>
           <%#= f.hidden_field :group_id, :value => @group.id %>
-          <%= f.submit %>
+          <%= f.submit "コメントする" %>
         <% end %>
-        <% @group_messages.each do |group_message| %>
-          <%= "#{group_message.user.account_name}" %>
-          <%= "#{group_message.message}" %>
+        <% @group.group_messages.each do |group_message| %>
+          <div class="all_message">
+            <div class="user_name"><%= "#{group_message.user.account_name}" %>　<%= "#{group_message.created_at.strftime(" %m月%d日 %H:%M")}" %></div>
+            <div class="message"><%= "#{group_message.message}" %></div>
+          </div>
         <% end %>
       </div>
     </div>
