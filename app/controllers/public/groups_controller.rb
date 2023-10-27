@@ -24,6 +24,11 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group_message = GroupMessage.new()
     @group_messages = GroupMessage.all
+    # @records = Record.all
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   def join
@@ -57,7 +62,6 @@ class Public::GroupsController < ApplicationController
     else
       render "new"
     end
-    
   end
   
   def update

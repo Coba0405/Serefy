@@ -1,4 +1,5 @@
 グループ詳細ページ
+<script src="autoreload.js"></script>
 <div class="container pt-5 pb-5">
   <div class="card">
     <div class="row">
@@ -12,7 +13,7 @@
               <td>
                 <tr>
                   <% @group.users.each do |user| %>
-                    <div><%= link_to "#{user.account_name}", public_user_path(user) %></div>
+                    <%= link_to "#{user.account_name} ", public_user_path(user) %>
                   <% end %>
                 </tr>
               </td>
@@ -42,7 +43,7 @@
         <%= form_with url: public_group_group_messages_path(@group.id), model: @group_message do |f| %>
           <%= f.text_field :message %>
           <%#= f.hidden_field :group_id, :value => @group.id %>
-          <%= f.submit "コメントする" %>
+          <%= f.submit "コメントを投稿" %>
         <% end %>
         <% @group.group_messages.each do |group_message| %>
           <div class="all_message">
