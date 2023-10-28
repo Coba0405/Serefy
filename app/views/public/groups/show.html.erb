@@ -45,12 +45,9 @@
           <%#= f.hidden_field :group_id, :value => @group.id %>
           <%= f.submit "コメントを投稿" %>
         <% end %>
-        <% @group.group_messages.each do |group_message| %>
-          <div class="all_message">
-            <div class="user_name"><%= "#{group_message.user.account_name}" %>　<%= "#{group_message.created_at.strftime(" %m月%d日 %H:%M")}" %></div>
-            <div class="message"><%= "#{group_message.message}" %></div>
-          </div>
-        <% end %>
+        <div id="records">
+          <%= render 'record' %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,1 +1,6 @@
-<!--<%#= record.name%>-->
+  <% @group.group_messages.each do |group_message| %>
+    <div class="all_message">
+      <div class="user_name"><%= "#{group_message.user.account_name}" %>　<%= "#{group_message.created_at.strftime(" %m月%d日 %H:%M")}" %></div>
+      <div class="message"><%= "#{group_message.message}" %></div>
+    </div>
+  <% end %>
