@@ -52,3 +52,17 @@
     </div>
   </div>
 </div>
+<script>
+  const milliseconds = 5000
+  const sync = () => {
+    $.ajax({
+      type: 'GET',
+      // GETリクエスト
+      url: $(location).attr('href'),
+      // ⇧現在のURLに対して
+      dataType: 'script'
+    })
+  }
+  const interval = setInterval(sync, milliseconds)
+  $(document).on('turbolinks:before-cache turbolinks:before-render', () => {clearTimeout(interval);});
+</script>
